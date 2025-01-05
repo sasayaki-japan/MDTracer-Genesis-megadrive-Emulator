@@ -24,7 +24,7 @@ namespace MDTracer
             g_snap_register.scroll_xsize = g_scroll_xsize;
             g_snap_register.scroll_xcell = g_scroll_xcell;
             g_snap_register.scroll_mask = w_vscroll_mask;
-            g_snap_register.scrollw_xcell = g_scrollw_xcell;
+            g_snap_register.scrollw_xcell = g_scroll_xcell;
             g_snap_register.vdp_reg_1_6_display = g_vdp_reg_1_6_display;            
             g_snap_register.vdp_reg_2_scrolla = (int)g_vdp_reg_2_scrolla >> 1;
             g_snap_register.vdp_reg_4_scrollb = (int)g_vdp_reg_4_scrollb >> 1;

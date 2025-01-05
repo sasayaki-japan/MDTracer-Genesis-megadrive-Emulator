@@ -215,7 +215,7 @@ namespace MDTracer
                 if (w_xcell_st != w_xcell_ed)
                 {
                     int w_view_dy = g_scanline & 7;
-                    int w_addr = (g_vdp_reg_3_windows >> 1) + ((g_scanline >> 3) * g_scrollw_xcell) + w_xcell_st;
+                    int w_addr = (g_vdp_reg_3_windows >> 1) + ((g_scanline >> 3) * g_scroll_xcell) + w_xcell_st;
                     int w_posx = w_xcell_st << 3;
                     for (int w_cx = w_xcell_st; w_cx <= w_xcell_ed; w_cx++)
                     {

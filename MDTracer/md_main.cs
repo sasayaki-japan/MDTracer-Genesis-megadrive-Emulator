@@ -90,8 +90,8 @@ namespace MDTracer
                                             , g_md_vdp.g_scroll_xsize
                                             , g_md_vdp.g_scroll_ysize);
             g_form_screenW.picture_update(g_md_vdp.g_scrollW_bitmap
-                                            , g_md_vdp.g_scrollw_xsize
-                                            , g_md_vdp.g_scrollw_ysize);
+                                            , g_md_vdp.g_scroll_xsize
+                                            , g_md_vdp.g_scroll_ysize);
             g_form_screenS.picture_update(g_md_vdp.g_scrollS_bitmap
                                             , g_md_vdp.SPRITE_XSIZE
                                             , g_md_vdp.SPRITE_YSIZE);

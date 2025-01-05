@@ -181,10 +181,6 @@ namespace MDTracer
                     {
                         g_display_xsize = 256;
                         g_display_xcell = 32;
-                        g_scrollw_xsize = 256;
-                        g_scrollw_xcell = 32;
-                        g_scrollw_ysize = 256;
-                        g_scrollw_ycell = 32;
                         g_max_sprite_num = 64;
                         g_max_sprite_line = 16;
                         g_max_sprite_cell = 32;
@@ -193,10 +189,6 @@ namespace MDTracer
                     {
                         g_display_xsize = 320;
                         g_display_xcell = 40;
-                        g_scrollw_xsize = 512;
-                        g_scrollw_xcell = 64;
-                        g_scrollw_ysize = 256;
-                        g_scrollw_ycell = 32;
                         g_max_sprite_num = 80;
                         g_max_sprite_line = 20;
                         g_max_sprite_cell = 40;

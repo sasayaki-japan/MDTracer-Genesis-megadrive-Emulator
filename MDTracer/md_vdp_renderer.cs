@@ -45,10 +45,6 @@ namespace MDTracer
         public int g_scroll_ysize;
         private int g_scroll_xsize_mask;
         private int g_scroll_ysize_mask;
-        public int g_scrollw_xsize;
-        public int g_scrollw_ysize;
-        private int g_scrollw_xcell;
-        private int g_scrollw_ycell;
         public int g_vertical_line_max;
 
         private int g_screenA_left_x;

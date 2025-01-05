@@ -62,7 +62,7 @@ namespace MDTracer
 
             g_scrollA_bitmap = new Bitmap(1024, 1024);
             g_scrollB_bitmap = new Bitmap(1024, 1024);
-            g_scrollW_bitmap = new Bitmap(512, 256);
+            g_scrollW_bitmap = new Bitmap(1024, 1024);
             g_scrollS_bitmap = new Bitmap(512, 512);
             g_pattern_table = new Bitmap(128, 1024);
             g_sprite_enable = new bool[80];
@@ -83,10 +83,6 @@ namespace MDTracer
             g_scroll_ysize = 256;
             g_scroll_xsize_mask = 0x00ff;
             g_scroll_ysize_mask = 0x00ff;
-            g_scrollw_xsize = 256;
-            g_scrollw_xcell = 32;
-            g_scrollw_ysize = 256;
-            g_scrollw_ycell = 32;
             g_vertical_line_max = 262;
 
             //VDP control port

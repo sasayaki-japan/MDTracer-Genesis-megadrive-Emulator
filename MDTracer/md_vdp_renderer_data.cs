@@ -154,11 +154,11 @@ namespace MDTracer
             {
                 byte* pixels = (byte*)dest_ptr;
                 int pixelOffset1 = 0;
-                for (int wy = 0; wy < g_scrollw_ycell; wy++)
+                for (int wy = 0; wy < g_scroll_ycell; wy++)
                 {
-                    int w_num = (g_vdp_reg_3_windows >> 1) + (wy * g_scrollw_xcell);
+                    int w_num = (g_vdp_reg_3_windows >> 1) + (wy * g_scroll_xcell);
                     int pixelOffset2 = pixelOffset1;
-                    for (int wx = 0; wx < g_scrollw_xcell; wx++)
+                    for (int wx = 0; wx < g_scroll_xcell; wx++)
                     {
                         int pixelOffset3 = pixelOffset2;
                         uint w_val = g_snap_renderer_vram[w_num];
