@@ -13,12 +13,12 @@ Note: This program is not intended for playing games illegally. Its purpose is t
 ## Features
  
 * This program provides the following features
-　* Draws a virtual screen and allows you to check the contents
-　* Displays the program in assembler and allows you to stop it at any point
-　* Displays the values ​​of the MC68000 and VDP registers
-　* Displays a function relationship diagram and allows you to know where it stopped
-　* Searches for the places where the MC68000 accesses the VDP or Z80
-　* Can stop at the point where specified memory is referenced/updated
+ * Draws a virtual screen and allows you to check the contents
+ * Displays the program in assembler and allows you to stop it at any point
+ * Displays the values ​​of the MC68000 and VDP registers
+ * Displays a function relationship diagram and allows you to know where it stopped
+ * Searches for the places where the MC68000 accesses the VDP or Z80
+ * Can stop at the point where specified memory is referenced/updated
 
 * This program is entirely written in C# and .NET.
 * It can be compiled using Visual Studio 2022.
@@ -36,7 +36,7 @@ Note: This program is not intended for playing games illegally. Its purpose is t
 This tracer has been confirmed to work only with the following games that I legally own.
   
 Verified Titles:
-    * JAPAN Version
+  * JAPAN Version
      * Space Harrier II
      * Super Thunder Blade
      * Altered Beast
@@ -75,7 +75,7 @@ Verified Titles:
      * OutRun
      * Gunstar Heroes
 
-    * USA version
+  * USA version
      * Vectorman
   
 ## unimplemented features
