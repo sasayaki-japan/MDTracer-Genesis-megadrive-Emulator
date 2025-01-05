@@ -10,6 +10,9 @@ Enjoy the amazing technology and wisdom of the engineers of the time from both t
  
 Note: This program is not intended for playing games illegally. Its purpose is to help users understand and appreciate the ingenuity of the engineers who created this remarkable technology.
  
+![demo1](https://www.jppass.com/mdtracer/wp-content/uploads/2025/01/demo1.png)
+
+ 
 ## Features
  
 * This program provides the following features
