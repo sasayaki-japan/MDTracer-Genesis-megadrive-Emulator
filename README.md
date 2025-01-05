@@ -2,7 +2,7 @@
  
 MD Tracer allows you to enjoy SEGA MegaDrive (Genesis) games just like a typical emulator, but its main purpose is as a tracer that tracks the internal processing of the MegaDrive hardware and software.
  
-All processing (MC68000, Z80, VDP, YM2612, PSG) is coded in VisualStadio's c# language and .net, making it easy to understand the internal processing of the hardware.
+All processing (MC68000, Z80, VDP, YM2612, PSG) is coded in VisualStadio's csharp language and .net, making it easy to understand the internal processing of the hardware.
  
 The software also displays MC68000 programs in disassembled form, allowing you to stop them at any point and check the values ​​of memory, registers, etc. while stepping through the program.
  
