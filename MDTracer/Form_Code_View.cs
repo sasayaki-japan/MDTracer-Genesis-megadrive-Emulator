@@ -37,7 +37,7 @@ namespace MDTracer
                     e.Graphics.FillRectangle(Brushes.LightBlue, 0, 20 + w_cur * 16, in_width, 16);
                 }
                 else
-                if (w_code.type == TRACECODE_TYPE.NON)
+                if (w_code.type == TRACECODE.TYPE.NON)
                 {
                     e.Graphics.FillRectangle(Brushes.LightGray, 0, 20 + w_cur * 16, in_width, 16);
                 }
@@ -60,14 +60,14 @@ namespace MDTracer
                 e.Graphics.DrawString(w_text, wfont, Brushes.Black, new PointF(20 - in_hScrollBar, 20 + w_cur * 16));
 
                 //dump
-                int w_dump_len = w_code.leng;
-                if (w_code.type == TRACECODE_TYPE.NON)
+                int w_dump_len = w_code.leng2;
+                if (w_code.type == TRACECODE.TYPE.NON)
                 {
                     w_dump_len = 0;
                     for (int i = 0; i < 8; i++)
                     {
                         if (Form_Code_Trace.MEMSIZE <= w_cur_line + i) break;
-                        if (g_analyse_code[w_cur_line + i].type != TRACECODE_TYPE.NON) break;
+                        if (g_analyse_code[w_cur_line + i].type != TRACECODE.TYPE.NON) break;
                         w_dump_len += 1;
                     }
                 }
@@ -78,7 +78,7 @@ namespace MDTracer
                 }
 
                 //View details
-                if (w_code.type == TRACECODE_TYPE.OPC)
+                if (w_code.type == TRACECODE.TYPE.OPC)
                 {
                     //mnemonic
                     w_text = w_code.operand;

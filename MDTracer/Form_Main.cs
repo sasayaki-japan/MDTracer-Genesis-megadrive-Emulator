@@ -54,17 +54,32 @@ namespace MDTracer
 
         private void Form_Main_SizeChanged(object sender, EventArgs e)
         {
-            int g_screen_size_x = this.Size.Width;
-            int g_screen_size_y = (int)(240 * ((g_screen_size_x - 16) / 320.0f) + 85);
-            this.Size = new Size(g_screen_size_x, g_screen_size_y);
+            if (g_filelist_view == false)
+            {
+                int w_x = this.Size.Width;
+                int w_y = this.Size.Height;
+                if ((w_x - 16) != g_screen_size_x)
+                {
+                    w_y = (int)(224 * ((w_x - 16) / 320.0f)) + 85;
+                }
+                else
+                if ((w_y - 85) != g_screen_size_y)
+                {
+                    w_x = (int)(320 * ((w_y - 85) / 224.0f)) + 16;
+                }
+                this.Size = new Size(w_x, w_y);
+            }
         }
         private void Form_Main_ResizeEnd(object sender, EventArgs e)
         {
-            g_screen_xpos = this.Location.X;
-            g_screen_ypos = this.Location.Y;
-            g_screen_size_x = this.Width;
-            g_screen_size_y = this.Height;
-            md_main.write_setting();
+            if (g_filelist_view == false)
+            {
+                g_screen_xpos = this.Location.X;
+                g_screen_ypos = this.Location.Y;
+                g_screen_size_x = this.Width - 16;
+                g_screen_size_y = this.Height - 85;
+                md_main.write_setting();
+            }
         }
 
         private void pictureBox_game_Paint(object sender, PaintEventArgs e)
@@ -117,10 +132,10 @@ namespace MDTracer
                     file_list_update(w_filename);
                     this.MaximumSize = new Size(0, 0);
                     this.MinimumSize = new Size(0, 0);
-                    g_filelist_view = false;
                     this.Location = new System.Drawing.Point(g_screen_xpos, g_screen_ypos);
-                    this.Width = g_screen_size_x;
-                    this.Height = g_screen_size_y;
+                    this.Width = g_screen_size_x + 16;
+                    this.Height = g_screen_size_y + 85;
+                    g_filelist_view = false;
                 }
             }
         }

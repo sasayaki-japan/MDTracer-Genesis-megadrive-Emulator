@@ -125,12 +125,12 @@ namespace MDTracer
                 g_paramview_vdp.Add(w_addval);
             }
             dataGridView_vdp.DataSource = g_paramview_vdp;
-            g_paramview_call = new List<CallView>(Form_Code_Trace.STACK_LIST_NUM);
-            for (int i = 0; i < Form_Code_Trace.STACK_LIST_NUM; i++)
-            {
-                g_paramview_call.Add(new CallView { type = "" });
-            }
-            dataGridView_call_stack.DataSource = g_paramview_call;
+                g_paramview_call = new List<CallView>(Form_Code_Trace.STACK_LIST_NUM);
+                for (int i = 0; i < Form_Code_Trace.STACK_LIST_NUM; i++)
+                {
+                    g_paramview_call.Add(new CallView { type = "" });
+                }
+                dataGridView_call_stack.DataSource = g_paramview_call;
         }
 
         //----------------------------------------------------------------

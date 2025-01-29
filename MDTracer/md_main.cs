@@ -53,7 +53,7 @@ namespace MDTracer
         {
             if (false == g_md_cartridge.load(in_romname)) return false;
             g_md_m68k.reset();
-            g_form_code_trace.Form_Code_Analyse_initialize();
+            g_form_code_trace.update();
             g_form_code_trace.CPU_Trace_push(Form_Code_Trace.STACK_LIST_TYPE.TOP, 0x0004, g_md_m68k.g_reg_PC, 0, g_md_m68k.g_reg_addr[7].l);
             if (g_trace_fsb == true)
             {

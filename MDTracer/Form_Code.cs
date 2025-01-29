@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static MDTracer.Form_Code_Trace;
 
 namespace MDTracer
 {
@@ -117,11 +118,11 @@ namespace MDTracer
                 int w_cur = g_top_line;
                 for (int i = 0; i < w_cur_line; i++)
                 {
-                    w_cur = md_main.g_form_code_trace.g_analyse_code[w_cur].next_line;
+                    w_cur += md_main.g_form_code_trace.g_analyse_code[w_cur].leng2;
+                    if (w_cur > Form_Code_Trace.MEMSIZE) return;
                 }
                 if (e.X < 20)
                 {
-
                     if (md_main.g_form_code_trace.g_analyse_code[w_cur].break_static == false)
                     {
                         md_main.g_form_code_trace.g_analyse_code[w_cur].break_static = true;
@@ -159,7 +160,7 @@ namespace MDTracer
                     int w_cur = g_top_line;
                     for (int i = 0; i < w_cur_line; i++)
                     {
-                        w_cur = md_main.g_form_code_trace.g_analyse_code[w_cur].next_line;
+                        w_cur += md_main.g_form_code_trace.g_analyse_code[w_cur].leng2;
                     }
                     int w_jmp = md_main.g_form_code_trace.g_analyse_code[w_cur].jmp_address;
                     if (w_jmp != 0)
@@ -178,11 +179,13 @@ namespace MDTracer
             switch (e.KeyCode)
             {
                 case Keys.Down:
-                    g_cursole_line = md_main.g_form_code_trace.g_analyse_code[g_cursole_line].next_line;
+                    g_cursole_line += md_main.g_form_code_trace.g_analyse_code[g_cursole_line].leng2;
+                    if (g_cursole_line > Form_Code_Trace.MEMSIZE) g_cursole_line = Form_Code_Trace.MEMSIZE - 1;
                     picturebox_scroll(g_top_line, 1);
                     break;
                 case Keys.Up:
-                    g_cursole_line = md_main.g_form_code_trace.g_analyse_code[g_cursole_line].prev_line;
+                    g_cursole_line -= md_main.g_form_code_trace.g_analyse_code[g_cursole_line].front;
+                    if (g_cursole_line < 0) g_cursole_line = 0;
                     picturebox_scroll(g_top_line, -1);
                     break;
                 case Keys.PageDown: picturebox_scroll(g_top_line, pictureBox_Code_line_num() - 1); break;
@@ -258,48 +261,63 @@ namespace MDTracer
                 {
                     for (int i = 0; i < in_line_offset; i++)
                     {
-                        int w_next = md_main.g_form_code_trace.g_analyse_code[w_line].next_line;
-                        if (w_next >= Form_Code_Trace.MEMSIZE) break;
-                        w_line = w_next;
+                        TRACECODE w_code = md_main.g_form_code_trace.g_analyse_code[w_line];
+                        w_line += w_code.leng2;
+                        if (w_line >= Form_Code_Trace.MEMSIZE)
+                        {
+                            w_line = in_line;
+                            break;
+                        }
                     }
                 }
                 else
                 {
                     for (int i = 0; i < -in_line_offset; i++)
                     {
-                        int w_prev = md_main.g_form_code_trace.g_analyse_code[w_line].prev_line;
-                        if (w_prev < 0) break;
-                        w_line = w_prev;
+                        if (w_line <= 0)
+                        {
+                            w_line = in_line;
+                            break;
+                        }
+                        TRACECODE w_code = md_main.g_form_code_trace.g_analyse_code[w_line - 1];
+                        w_line -= w_code.front + 1;
                     }
                 }
             }
             else
             {
+                TRACECODE w_code = md_main.g_form_code_trace.g_analyse_code[w_line];
+                TRACECODE w_code_prev = default;
+                if (w_line + w_code.front < Form_Code_Trace.MEMSIZE)
+                {
+                    w_code_prev = md_main.g_form_code_trace.g_analyse_code[w_line + w_code.front];
+                }
+                TRACECODE w_code_next = default;
+                if (w_line - w_code.leng2 > 0)
+                {
+                    w_code_next = md_main.g_form_code_trace.g_analyse_code[w_line - w_code.leng2];
+                }
                 if (g_top_line < w_line)
                 {
-                    int w_prev = md_main.g_form_code_trace.g_analyse_code[w_line].prev_line;
-                    if (w_prev > 0)
+                    if (w_line - w_code.front > 0)
                     {
-                        w_line = md_main.g_form_code_trace.g_analyse_code[w_prev].next_line;
+                        w_line += w_code_prev.leng2;
                     }
                     else
                     {
-                        int w_next = md_main.g_form_code_trace.g_analyse_code[w_line].next_line;
-                        w_line = md_main.g_form_code_trace.g_analyse_code[w_next].prev_line;
+                        w_line -= w_code_next.front;
                     }
                 }
                 else
                 if (g_top_line > w_line)
                 {
-                    int w_next = md_main.g_form_code_trace.g_analyse_code[w_line].next_line;
-                    if (w_next < Form_Code_Trace.MEMSIZE)
+                    if (w_line + w_code.leng2 < Form_Code_Trace.MEMSIZE)
                     {
-                        w_line = md_main.g_form_code_trace.g_analyse_code[w_next].prev_line;
+                        w_line -= w_code_next.front;
                     }
                     else
                     {
-                        int w_prev = md_main.g_form_code_trace.g_analyse_code[w_line].prev_line;
-                        w_line = md_main.g_form_code_trace.g_analyse_code[w_prev].next_line;
+                        w_line += w_code_prev.leng2;
                     }
                 }
             }
@@ -332,7 +350,7 @@ namespace MDTracer
                 for (int w_line = 0; w_line < Form_Code_Trace.MEMSIZE; w_line++)
                 {
                     Form_Code_Trace.TRACECODE w_code = md_main.g_form_code_trace.g_analyse_code[w_line];
-                    if (w_code.type == Form_Code_Trace.TRACECODE_TYPE.OPC)
+                    if (w_code.type == Form_Code_Trace.TRACECODE.TYPE.OPC)
                     {
                         if (w_code.comment1 == wselectedItem)
                         {
@@ -461,8 +479,6 @@ namespace MDTracer
             }
             return true;
         }
-
-
     }
 }
 

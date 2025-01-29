@@ -9,7 +9,6 @@ namespace MDTracer
         public bool g_cpu_pause;
         private bool g_chk_enable; 
         private ManualResetEvent g_waitHandle;
-        private int g_g_stack_num;
 
         public enum STACK_LIST_TYPE : int
         {
@@ -36,6 +35,7 @@ namespace MDTracer
             public uint stack_address;
         }
         public STACK_LIST[] g_stack_list;
+        private int g_g_stack_num;
         public int g_stack_cur;
         public uint g_func_address;
         public uint g_caller_address;
@@ -92,7 +92,7 @@ namespace MDTracer
                 int w_line = get_code_from_addr(md_main.g_md_m68k.g_reg_PC);
                 if(g_analyse_code[w_line].operand_jsr == true)
                 {
-                    int w_line2 = get_code_from_addr((uint)(md_main.g_md_m68k.g_reg_PC + (g_analyse_code[w_line].leng * 2)));
+                    int w_line2 = get_code_from_addr((uint)(md_main.g_md_m68k.g_reg_PC + (g_analyse_code[w_line].leng2 * 2)));
                     g_analyse_code[w_line2].break_flash = true;
                     g_cpu_pause = false;
                 }
@@ -171,12 +171,13 @@ namespace MDTracer
                 g_caller_address = g_stack_list[g_stack_cur - 1].caller_address;
             }
         }
+        //----------------------------------------------------------------
         public void CPU_Trace(uint in_addr)
         {
             int w_line = get_code_from_addr(in_addr);
-            if (g_analyse_code[w_line].type == TRACECODE_TYPE.NON)
+            if (g_analyse_code[w_line].type == TRACECODE.TYPE.NON)
             {
-                g_analyse_code[w_line].type = TRACECODE_TYPE.CHK;
+                g_analyse_code[w_line].type = TRACECODE.TYPE.CHK;
                 g_chk_enable = true;
             }
             g_analyse_code[w_line].func_address = g_func_address;

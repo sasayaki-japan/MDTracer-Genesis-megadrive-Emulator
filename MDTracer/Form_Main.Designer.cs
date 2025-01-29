@@ -64,7 +64,7 @@
             // 
             SettingMenuItem1.Name = "SettingMenuItem1";
             SettingMenuItem1.ShortcutKeys = Keys.F4;
-            SettingMenuItem1.Size = new Size(156, 22);
+            SettingMenuItem1.Size = new Size(180, 22);
             SettingMenuItem1.Text = "Setting";
             SettingMenuItem1.Click += SettingMenuItem1_Click;
             // 
@@ -72,7 +72,7 @@
             // 
             hardResetMenuItem.Name = "hardResetMenuItem";
             hardResetMenuItem.ShortcutKeys = Keys.F12;
-            hardResetMenuItem.Size = new Size(156, 22);
+            hardResetMenuItem.Size = new Size(180, 22);
             hardResetMenuItem.Text = "Hard Reset";
             hardResetMenuItem.Click += hardResetMenuItem_Click;
             // 

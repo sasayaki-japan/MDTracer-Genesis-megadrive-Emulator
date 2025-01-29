@@ -509,7 +509,7 @@ namespace opcode_make
                     switch (in_register)
                     {
                         case 0:
-                            w_moji = "(" + "#OP" + w_opnum + "LEN2";
+                            w_moji = "(" + "#OP" + w_opnum + "LEN2)";
                             w_len = 2;
                             break;
                         case 1:
